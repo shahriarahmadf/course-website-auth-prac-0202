@@ -8,13 +8,13 @@ import { AuthContext } from '../../contexts/UserContext';
  
 
 const Register = () => {
-    // call from context
-
+    // call register function from context
     const {register} = useContext(AuthContext);
     
     const registerSubmit = e => {
         e.preventDefault();
         console.log('register clicked');
+        
         const form = e.target;
 
         const name = form.name.value;
@@ -29,8 +29,10 @@ const Register = () => {
         .then(userCredential => {
             // signed in
             const user = userCredential.user;
+            console.log(user);
             form.reset();
         })
+        .catch(error => console.log(error));
 
     }
     return (
